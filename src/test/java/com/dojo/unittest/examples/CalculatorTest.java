@@ -2,6 +2,12 @@ package com.dojo.unittest.examples;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.stream.Stream;
 
 public class CalculatorTest {
 
@@ -44,6 +50,61 @@ public class CalculatorTest {
         });
 
     }
+
+    @Test
+    void shouldGetInfinityWithDivideByZero() {
+        // Arrange -> Given
+        Calculator calculator = new Calculator();
+
+        // Assert -> Then
+        double result = calculator.divideInfinity(1, 0);
+
+        // Act -> When
+        Assertions.assertTrue(Double.isInfinite(result));
+    }
+
+
+    // Parameterized Tests
+    @ParameterizedTest
+    @ValueSource(doubles = {1, 2, 3, 4, 5})
+    void shouldAddaOneToParamValue(double x){
+        // Arrange -> Given
+        Calculator calculator = new Calculator();
+
+        // Act -> When
+        double result = calculator.add(x, 1);
+
+        //Assert -> Then
+        Assertions.assertEquals(x + 1, result);
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("provideDoubleValues")
+    void shouldAddTwoNumbersParamValues(double x, double y, double expected) {
+        // Arrange -> Given
+        Calculator calculator = new Calculator();
+
+        // Act -> When
+        double result = calculator.add(x, y);
+
+        //Assert -> Then
+        Assertions.assertEquals(expected, result);
+    }
+
+    private static Stream<Arguments> provideDoubleValues() {
+        return Stream.of(
+                Arguments.of(1, 2, 3),
+                Arguments.of(55, 99, 154),
+                Arguments.of(33, 0, 33),
+                Arguments.of(-1, 4, 3),
+                Arguments.of(-1, -1, -2),
+                Arguments.of(-5, 5, 0)
+        );
+    }
+
+
+    // AssertJ Tests
 
 
 }

@@ -14,11 +14,15 @@ public class Calculator {
         return x * y;
     }
 
-    public Double divide(double x, double y) {
+    public double divide(double x, double y) {
         if (y == 0) {
             throw new ArithmeticException("Cannot divide by zero");
         }
         return x / y;
     }
 
+
+    public Double divideInfinity(double x, double y) {
+        return x / y;
+    }
 }
