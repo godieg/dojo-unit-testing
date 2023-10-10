@@ -7,6 +7,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.stream.Stream;
 
 public class CalculatorTest {
@@ -36,6 +39,13 @@ public class CalculatorTest {
 
         //Assert -> Then
         Assertions.assertEquals(3, result);
+
+        //AssertJ -> Then
+        assertThat(result)
+                .as("Add 1 + 2  should be 3")
+                .isEqualTo(3)
+                .isGreaterThan(2)
+                .isFinite();
     }
 
     @Test
@@ -49,6 +59,9 @@ public class CalculatorTest {
             calculator.divide(1, 0);
         });
 
+        assertThatThrownBy(() -> calculator.divide(1, 0))
+                .isInstanceOf(ArithmeticException.class)
+                .hasMessageContaining("Cannot divide by zero");
     }
 
     @Test
@@ -61,6 +74,12 @@ public class CalculatorTest {
 
         // Act -> When
         Assertions.assertTrue(Double.isInfinite(result));
+
+        assertThat(result)
+                .as("Divide 1 / 0  should be Infinity")
+                .isEqualTo(Double.POSITIVE_INFINITY)
+                .isPositive()
+                .isInfinite();
     }
 
 
@@ -76,6 +95,11 @@ public class CalculatorTest {
 
         //Assert -> Then
         Assertions.assertEquals(x + 1, result);
+
+        assertThat(result)
+                .as("Add %s + 1  should be %s", x, x + 1)
+                .isEqualTo(x + 1)
+                .isGreaterThan(x);
     }
 
 
@@ -90,6 +114,10 @@ public class CalculatorTest {
 
         //Assert -> Then
         Assertions.assertEquals(expected, result);
+
+        assertThat(result)
+                .as("Add %s + %s  should be %s", x, y, expected)
+                .isEqualTo(expected);
     }
 
     private static Stream<Arguments> provideDoubleValues() {
@@ -102,9 +130,5 @@ public class CalculatorTest {
                 Arguments.of(-5, 5, 0)
         );
     }
-
-
-    // AssertJ Tests
-
 
 }
