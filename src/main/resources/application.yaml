@@ -1,0 +1,11 @@
+spring:
+  r2dbc:
+    username: unittest
+    password: secret
+    url: r2dbc:postgresql://localhost:5432/unittest
+
+logging:
+  level:
+    org:
+      springframework:
+        r2dbc: DEBUG

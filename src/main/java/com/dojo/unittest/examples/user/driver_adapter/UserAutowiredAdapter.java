@@ -3,20 +3,34 @@ package com.dojo.unittest.examples.user.driver_adapter;
 import com.dojo.unittest.examples.user.domain.UserRepository;
 import com.dojo.unittest.examples.user.domain.model.User;
 import com.dojo.unittest.examples.user.driver_adapter.model.UserData;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-@RequiredArgsConstructor
-public class UserAdapter implements UserRepository {
+@Component("userAutowiredAdapter")
+public class UserAutowiredAdapter implements UserRepository {
 
-    private final UserReactiveRepository userReactiveRepository;
+    @Autowired
+    private UserReactiveRepository userReactiveRepository;
+
+    /*
+    @Autowired
+    public UserAutowiredAdapter(UserReactiveRepository userReactiveRepository) {
+        this.userReactiveRepository = userReactiveRepository;
+    }
+
+    @Autowired
+    public void setUserReactiveRepository(UserReactiveRepository userReactiveRepository) {
+        this.userReactiveRepository = userReactiveRepository;
+    }
+    */
 
     @Override
     public Mono<User> save(User user) {
         UserData userToSave = UserData
                 .builder()
                 .firstName(user.getFirstName())
-                .lastName(toUpperCase(user.getLastName()))
+                .lastName(user.getLastName())
                 .email(user.getEmail())
                 .build();
 
@@ -29,10 +43,6 @@ public class UserAdapter implements UserRepository {
                         .lastName(usr.getLastName())
                         .email(usr.getEmail())
                         .build());
-    }
-
-    private String toUpperCase(String value) {
-        return value.toUpperCase();
     }
 
 }

@@ -8,6 +8,7 @@ import io.r2dbc.pool.ConnectionPool;
 import io.r2dbc.pool.ConnectionPoolConfiguration;
 import io.r2dbc.postgresql.PostgresqlConnectionConfiguration;
 import io.r2dbc.postgresql.PostgresqlConnectionFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,17 +18,18 @@ import java.time.Duration;
 public class UserConfiguration {
 
     @Bean
-    public UserUseCase userUseCase(UserRepository userRepository) {
+    public UserUseCase userUseCase(@Qualifier("userAdapter") UserRepository userRepository) {
         return new UserUseCase(userRepository);
     }
 
-    @Bean
+    @Bean("userAdapter")
     public UserRepository userRepository(UserReactiveRepository userReactiveRepository) {
         return new UserAdapter(userReactiveRepository);
     }
 
+    /*
     @Bean
-    public ConnectionPool getConnectionConfig() {
+    public ConnectionPool getConnectionConfig(ConnectionProperties properties) {
         PostgresqlConnectionConfiguration dbConfiguration = PostgresqlConnectionConfiguration.builder()
                 .host("localhost")
                 .port(5432)
@@ -48,5 +50,6 @@ public class UserConfiguration {
 
         return new ConnectionPool(poolConfiguration);
     }
+     */
 
 }
