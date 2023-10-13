@@ -6,12 +6,13 @@ import com.dojo.unittest.examples.user.driver_adapter.UserReactiveRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.r2dbc.R2dbcConnectionDetails;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.context.annotation.PropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.MountableFile;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
@@ -19,17 +20,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Testcontainers
 @SpringBootTest
-@PropertySource("classpath:application-containers.properties")
 public class UserAdapterContainersTest {
 
     @Container
-    @ServiceConnection
+    @ServiceConnection(type = R2dbcConnectionDetails.class)
     static PostgreSQLContainer<?> postgresqlContainer = new PostgreSQLContainer<>("postgres:16.0")
-            // .withDatabaseName("unittest")
-            // .withUsername("unittest")
-            // .withPassword("secret")
-            // .withInitScript("schema-postgres.sql")
-            ;
+            .withDatabaseName("unittest")
+            .withUsername("unittest")
+            .withPassword("secret")
+            .withCopyFileToContainer(
+                    MountableFile.forClasspathResource(
+                            "schema-postgresql.sql"),
+                    "/docker-entrypoint-initdb.d/schema-postgresql.sql");
 
     @Autowired
     UserReactiveRepository userReactiveRepository;
@@ -70,12 +72,6 @@ public class UserAdapterContainersTest {
                     return true;
                 })
                 .verifyComplete();
-
-        StepVerifier.create(userResponse)
-                .expectNext(userExpected)
-                .expectComplete()
-                .verify();
     }
-
 
 }

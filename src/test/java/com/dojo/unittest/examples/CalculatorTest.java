@@ -7,10 +7,10 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.stream.Stream;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import java.util.stream.Stream;
 
 public class CalculatorTest {
 
@@ -86,7 +86,7 @@ public class CalculatorTest {
     // Parameterized Tests
     @ParameterizedTest
     @ValueSource(doubles = {1, 2, 3, 4, 5})
-    void shouldAddaOneToParamValue(double x){
+    void shouldAddaOneToParamValue(double x) {
         // Arrange -> Given
         Calculator calculator = new Calculator();
 

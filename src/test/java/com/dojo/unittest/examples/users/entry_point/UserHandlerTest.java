@@ -8,7 +8,6 @@ import com.dojo.unittest.examples.user.entry_point.dto.UserRequest;
 import com.dojo.unittest.examples.user.entry_point.dto.UserResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

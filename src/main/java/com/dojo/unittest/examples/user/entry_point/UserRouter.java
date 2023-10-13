@@ -15,9 +15,9 @@ public class UserRouter {
     @Bean
     public RouterFunction<ServerResponse> routerFunction(UserHandler userHandler) {
         return route(POST("/api/v1/users"),
-                        userRequest -> userRequest
-                                .bodyToMono(UserRequest.class)
-                                .flatMap(userHandler::save));
+                userRequest -> userRequest
+                        .bodyToMono(UserRequest.class)
+                        .flatMap(userHandler::save));
     }
 
 }

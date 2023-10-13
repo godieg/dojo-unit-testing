@@ -4,15 +4,9 @@ import com.dojo.unittest.examples.user.domain.UserRepository;
 import com.dojo.unittest.examples.user.domain.UserUseCase;
 import com.dojo.unittest.examples.user.driver_adapter.UserAdapter;
 import com.dojo.unittest.examples.user.driver_adapter.UserReactiveRepository;
-import io.r2dbc.pool.ConnectionPool;
-import io.r2dbc.pool.ConnectionPoolConfiguration;
-import io.r2dbc.postgresql.PostgresqlConnectionConfiguration;
-import io.r2dbc.postgresql.PostgresqlConnectionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.time.Duration;
 
 @Configuration
 public class UserConfiguration {
