@@ -21,29 +21,4 @@ public class UserConfiguration {
         return new UserAdapter(userReactiveRepository);
     }
 
-    /*
-    @Bean
-    public ConnectionPool getConnectionConfig(ConnectionProperties properties) {
-        PostgresqlConnectionConfiguration dbConfiguration = PostgresqlConnectionConfiguration.builder()
-                .host("localhost")
-                .port(5432)
-                .database("unittest")
-                .schema("public")
-                .username("unittest")
-                .password("secret")
-                .build();
-
-        ConnectionPoolConfiguration poolConfiguration = ConnectionPoolConfiguration.builder()
-                .connectionFactory(new PostgresqlConnectionFactory(dbConfiguration))
-                .name("api-postgres-connection-pool")
-                .initialSize(12)
-                .maxSize(15)
-                .maxIdleTime(Duration.ofMinutes(30))
-                .validationQuery("SELECT 1")
-                .build();
-
-        return new ConnectionPool(poolConfiguration);
-    }
-     */
-
 }
