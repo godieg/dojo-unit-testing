@@ -1,8 +1,8 @@
-package com.dojo.unittest.examples.user.driver_adapter;
+package com.dojo.unittest.examples.user.driven_adapter;
 
 import com.dojo.unittest.examples.user.domain.UserRepository;
 import com.dojo.unittest.examples.user.domain.model.User;
-import com.dojo.unittest.examples.user.driver_adapter.model.UserData;
+import com.dojo.unittest.examples.user.driven_adapter.model.UserData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;

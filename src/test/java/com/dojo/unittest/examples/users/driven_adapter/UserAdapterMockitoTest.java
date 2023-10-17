@@ -1,9 +1,9 @@
-package com.dojo.unittest.examples.users.driver_adapter;
+package com.dojo.unittest.examples.users.driven_adapter;
 
 import com.dojo.unittest.examples.user.domain.model.User;
-import com.dojo.unittest.examples.user.driver_adapter.UserAdapter;
-import com.dojo.unittest.examples.user.driver_adapter.UserReactiveRepository;
-import com.dojo.unittest.examples.user.driver_adapter.model.UserData;
+import com.dojo.unittest.examples.user.driven_adapter.UserAdapter;
+import com.dojo.unittest.examples.user.driven_adapter.UserReactiveRepository;
+import com.dojo.unittest.examples.user.driven_adapter.model.UserData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

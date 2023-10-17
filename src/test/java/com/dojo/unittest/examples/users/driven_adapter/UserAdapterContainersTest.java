@@ -1,8 +1,8 @@
-package com.dojo.unittest.examples.users.driver_adapter;
+package com.dojo.unittest.examples.users.driven_adapter;
 
 import com.dojo.unittest.examples.user.domain.model.User;
-import com.dojo.unittest.examples.user.driver_adapter.UserAutowiredAdapter;
-import com.dojo.unittest.examples.user.driver_adapter.UserReactiveRepository;
+import com.dojo.unittest.examples.user.driven_adapter.UserAutowiredAdapter;
+import com.dojo.unittest.examples.user.driven_adapter.UserReactiveRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

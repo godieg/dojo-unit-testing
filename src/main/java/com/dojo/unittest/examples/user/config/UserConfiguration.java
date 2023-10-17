@@ -2,8 +2,8 @@ package com.dojo.unittest.examples.user.config;
 
 import com.dojo.unittest.examples.user.domain.UserRepository;
 import com.dojo.unittest.examples.user.domain.UserUseCase;
-import com.dojo.unittest.examples.user.driver_adapter.UserAdapter;
-import com.dojo.unittest.examples.user.driver_adapter.UserReactiveRepository;
+import com.dojo.unittest.examples.user.driven_adapter.UserAdapter;
+import com.dojo.unittest.examples.user.driven_adapter.UserReactiveRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,46 +1,31 @@
-package com.dojo.unittest.examples.users.driver_adapter;
+package com.dojo.unittest.examples.users.driven_adapter;
 
 import com.dojo.unittest.examples.user.domain.model.User;
-import com.dojo.unittest.examples.user.driver_adapter.UserAutowiredAdapter;
-import com.dojo.unittest.examples.user.driver_adapter.UserReactiveRepository;
-import com.dojo.unittest.examples.user.driver_adapter.model.UserData;
+import com.dojo.unittest.examples.user.driven_adapter.UserAutowiredAdapter;
+import com.dojo.unittest.examples.user.driven_adapter.UserReactiveRepository;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class UserAdapterMockBeanTest {
+class UserAdapterSpringBootTest {
 
-    @MockBean
+    @Autowired
     UserReactiveRepository userReactiveRepository;
 
     @Autowired
     UserAutowiredAdapter userAdapter;
 
-    @BeforeEach
-    void setUp() {
-        UserData userData = UserData
-                .builder()
-                .firstName("John")
-                .lastName("Doe")
-                .email("john@example.com")
-                .build();
-
-        when(userReactiveRepository.save(userData)).thenReturn(Mono.just(userData));
-    }
-
     @Test
     void shouldSaveNewUser() {
         User user = User
                 .builder()
+                .id(1L)
                 .firstName("John")
                 .lastName("Doe")
                 .email("john@example.com")

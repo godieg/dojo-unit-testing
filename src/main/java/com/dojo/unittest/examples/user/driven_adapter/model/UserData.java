@@ -1,4 +1,4 @@
-package com.dojo.unittest.examples.user.driver_adapter.model;
+package com.dojo.unittest.examples.user.driven_adapter.model;
 
 import lombok.Builder;
 import lombok.Data;
