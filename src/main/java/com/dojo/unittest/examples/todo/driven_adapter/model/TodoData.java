@@ -1,4 +1,4 @@
-package com.dojo.unittest.examples.user.driver_adapter.model;
+package com.dojo.unittest.examples.todo.driven_adapter.model;
 
 import lombok.Builder;
 import lombok.Data;
@@ -9,20 +9,20 @@ import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @Builder
-@Table("users")
-public class UserData {
+@Table("todos")
+public class TodoData {
 
     @Id
     private Long id;
 
-    @Column("first_name")
-    private String firstName;
-
-    @Column("last_name")
-    private String lastName;
+    @Column
+    private String name;
 
     @Column
-    private String email;
+    private boolean active;
+
+    @Column
+    private String priority;
 
     @Version
     private Long version;

@@ -1,8 +1,8 @@
 spring:
   r2dbc:
-    username: unittest
+    username: todo
     password: secret
-    url: r2dbc:postgresql://localhost:5432/unittest
+    url: r2dbc:postgresql://localhost:5432/todo
 
 logging:
   level:

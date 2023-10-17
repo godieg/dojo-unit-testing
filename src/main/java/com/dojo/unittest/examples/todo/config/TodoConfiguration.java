@@ -2,8 +2,8 @@ package com.dojo.unittest.examples.todo.config;
 
 import com.dojo.unittest.examples.todo.domain.TodoRepository;
 import com.dojo.unittest.examples.todo.domain.TodoUseCase;
-import com.dojo.unittest.examples.todo.driver_adapter.TodoAdapter;
-import com.dojo.unittest.examples.todo.driver_adapter.TodoReactiveRepository;
+import com.dojo.unittest.examples.todo.driven_adapter.TodoAdapter;
+import com.dojo.unittest.examples.todo.driven_adapter.TodoReactiveRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

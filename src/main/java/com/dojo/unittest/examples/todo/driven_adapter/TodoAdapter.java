@@ -1,8 +1,8 @@
-package com.dojo.unittest.examples.todo.driver_adapter;
+package com.dojo.unittest.examples.todo.driven_adapter;
 
 import com.dojo.unittest.examples.todo.domain.TodoRepository;
 import com.dojo.unittest.examples.todo.domain.model.Todo;
-import com.dojo.unittest.examples.todo.driver_adapter.model.TodoData;
+import com.dojo.unittest.examples.todo.driven_adapter.model.TodoData;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

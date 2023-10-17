@@ -1,21 +1,8 @@
-CREATE TABLE IF NOT EXISTS users
+CREATE TABLE IF NOT EXISTS todos
 (
-    id
-    SERIAL
-    PRIMARY
-    KEY,
-    first_name
-    varchar
-(
-    100
-),
-    last_name varchar
-(
-    100
-),
-    email varchar
-(
-    200
-),
+    id SERIAL PRIMARY KEY,
+    name varchar(100),
+    active boolean,
+    priority varchar(200),
     version integer
-    );
+);
