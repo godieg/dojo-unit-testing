@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.r2dbc.R2dbcConnectionDetails;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.MountableFile;
@@ -20,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Testcontainers
 @SpringBootTest
-public class UserAdapterContainersTest {
+class UserAdapterContainersTest {
 
     @Container
     @ServiceConnection(type = R2dbcConnectionDetails.class)
@@ -28,6 +29,7 @@ public class UserAdapterContainersTest {
             .withDatabaseName("unittest")
             .withUsername("unittest")
             .withPassword("secret")
+            .waitingFor(Wait.forListeningPort())
             .withCopyFileToContainer(
                     MountableFile.forClasspathResource(
                             "schema-postgresql.sql"),
@@ -45,7 +47,9 @@ public class UserAdapterContainersTest {
     }
 
     @Test
-    void shouldSaveNewUser() {
+    void shouldSaveNewUser() throws InterruptedException {
+        Thread.sleep(10000);
+
         User user = User
                 .builder()
                 .firstName("John")
