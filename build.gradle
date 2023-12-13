@@ -22,6 +22,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
     implementation 'org.postgresql:r2dbc-postgresql:1.0.2.RELEASE'
 
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
+
     compileOnly "org.projectlombok:lombok:1.18.30"
     annotationProcessor "org.projectlombok:lombok:1.18.30"
     testCompileOnly "org.projectlombok:lombok:1.18.30"
