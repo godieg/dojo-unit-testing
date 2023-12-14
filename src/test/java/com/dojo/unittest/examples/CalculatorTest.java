@@ -1,6 +1,7 @@
 package com.dojo.unittest.examples;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -49,6 +50,7 @@ class CalculatorTest {
     }
 
     @Test
+    @DisplayName("Should be throw an Exception When Divide by Zero")
     void shouldThrowExceptionDivideByZero() {
         // Arrange -> Given
         Calculator calculator = new Calculator();
