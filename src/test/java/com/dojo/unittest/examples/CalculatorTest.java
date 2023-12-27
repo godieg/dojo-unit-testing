@@ -122,6 +122,19 @@ class CalculatorTest {
                 .isEqualTo(expected);
     }
 
+    @ParameterizedTest
+    @MethodSource("provideDoubleExceptionValues")
+    void shouldThrowExpectedExceptionDivideByZero(double x, double y, Class<Exception> expected) {
+        // Arrange -> Given
+        Calculator calculator = new Calculator();
+
+        // Assert -> Then
+        // Act -> When
+        assertThatThrownBy(() -> calculator.divide(x, y))
+                .isInstanceOf(expected)
+                .hasMessageContaining("Cannot divide by zero");
+    }
+
     private static Stream<Arguments> provideDoubleValues() {
         return Stream.of(
                 Arguments.of(1, 2, 3),
@@ -132,5 +145,18 @@ class CalculatorTest {
                 Arguments.of(-5, 5, 0)
         );
     }
+
+
+    private static Stream<Arguments> provideDoubleExceptionValues() {
+        return Stream.of(
+                Arguments.of(1, 0, ArithmeticException.class),
+                Arguments.of(55, 0, ArithmeticException.class),
+                Arguments.of(33, 0, ArithmeticException.class),
+                Arguments.of(-1, 0, ArithmeticException.class),
+                Arguments.of(-1, -0, ArithmeticException.class),
+                Arguments.of(-5, 0, ArithmeticException.class)
+        );
+    }
+
 
 }
